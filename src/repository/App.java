@@ -12,7 +12,7 @@ public class App {
 
         try {
             while (!isExit) {
-                System.out.println("\n ------ ENIGPUS ONLINE ------ ");
+                System.out.println(" ------ ENIGPUS ONLINE ------ ");
                 System.out.println(" ----------- MENU ----------- ");
                 System.out.println("1. Add book");
                 System.out.println("2. Search book by title");
@@ -60,7 +60,7 @@ public class App {
                 }
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
 }

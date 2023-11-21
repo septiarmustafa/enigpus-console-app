@@ -30,14 +30,16 @@ public class InventoryServiceImpl extends Book implements InventoryService{
         System.out.println("\nList All Book: ");
         int index = 0;
         try {
+            Book books = null;
             for (Book book: list) {
                 index++;
-                System.out.println(index +". " + book);
+                books = book;
+                System.out.println("");
             }
+            System.out.println(books == null ? "There's no books\n" : index +". " + books);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
-        System.out.println();
     }
     @Override
     public void addBook(Integer booktype) {
@@ -76,33 +78,48 @@ public class InventoryServiceImpl extends Book implements InventoryService{
                     break;
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }
     @Override
     public void searchBookByTitle(String title) {
         try {
+            Book foundBook = null;
             for (Book book : listBook) {
                 if (title.equals(book.getTitle())) {
-                    System.out.println("Book found : " + book);
+                    foundBook = book;
+                    break;
                 }
+            }
+            if (foundBook != null) {
+                System.out.println("Book found : " + foundBook);
+            } else {
+                System.out.println( "Sorry, Book not found ");
             }
             System.out.println();
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
     @Override
     public void searchBookById(String bookId) {
         try {
+            Book foundBook = null;
+
             for (Book book : listBook) {
                 if (bookId.equals(book.getId())) {
-                    System.out.println("Book found with id [" + bookId + "] : " + book);
+                    foundBook = book;
+                    break;
                 }
             }
+            if (foundBook != null) {
+                System.out.println("Book found with id [" + bookId + "] : " + foundBook);
+            } else {
+                System.out.println( "Sorry, Book not found ");
+            }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
 
     }
@@ -114,12 +131,12 @@ public class InventoryServiceImpl extends Book implements InventoryService{
                 if (removeBook.equals(listBook.get(i).getTitle())){
                     removed = String.valueOf(listBook.get(i));
                     listBook.remove(listBook.get(i));
+                    BookCode.setCodeBookId(BookCode.getCodeBookId() - 1);
                 }
             }
-            System.out.println("Successfully removed " + removed);
-            BookCode.setCodeBookId(BookCode.getCodeBookId() - 1);
+            System.out.println(removed == null ? "Can't delete, there is no such book " : "Successfully removed " + removed);
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
     }
     @Override

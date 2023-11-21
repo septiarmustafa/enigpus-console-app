@@ -49,7 +49,7 @@ public class BookCode {
                 generated = year + "-B-" + BookCode.codeBookId;
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
         return generated;
 
